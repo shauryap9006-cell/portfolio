@@ -1,5 +1,7 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -8,8 +10,9 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   output: 'export',
-  basePath: '/porfolio',
-  assetPrefix: '/porfolio',
+  // Only apply basePath and assetPrefix in production (e.g., for GitHub Pages)
+  basePath: isProd ? '/portfolio' : '',
+  assetPrefix: isProd ? '/portfolio' : '',
   images: {
     unoptimized: true,
   },

@@ -26,15 +26,12 @@
       "@/*": [
         "./*"
       ],
-      "@stores": [
-        "./app/stores"
-      ],
-      "@types": [
-        "./app/types"
-      ],
-      "@constants": [
-        "./app/constants"
-      ]
+      "@stores": ["./app/stores"],
+      "@stores/*": ["./app/stores/*"],
+      "@types": ["./app/types"],
+      "@types/*": ["./app/types/*"],
+      "@constants": ["./app/constants"],
+      "@constants/*": ["./app/constants/*"]
     }
   },
   "include": [

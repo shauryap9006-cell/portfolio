@@ -2,6 +2,7 @@ import { Image, Text, Float, Edges } from "@react-three/drei";
 import { useMemo, useRef, useState, useEffect } from "react";
 import * as THREE from "three";
 import gsap from "gsap";
+import { withBase } from "@constants/pathConfig";
 
 interface CertificateFrameProps {
   title: string;
@@ -110,7 +111,8 @@ const CertificateFrame = ({
 
         {/* The Certificate Image */}
         <Image
-          url={`/porfolio${image}`}
+          url={withBase(image)}
+          alt={title}
           scale={[4, 2.6]}
           position={[0, 0, 0.08]}
           transparent

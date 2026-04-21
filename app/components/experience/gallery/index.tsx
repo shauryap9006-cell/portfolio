@@ -42,7 +42,7 @@ const MovingCloud = ({ seed: initialSeed, y: initialY, z: initialZ, speed: initi
       // Continuous Swapping: If it goes past the right edge, reset and re-randomize
       if (ref.current.position.x > BOUNDS) {
         ref.current.position.x = -BOUNDS;
-        
+
         // Randomize all properties to make it look like a totally new cloud
         setCloudState({
           seed: Math.random() * 1000,
@@ -81,7 +81,7 @@ const GalleryCarousel = ({ onSelect, activeId }: { onSelect: (cert: typeof certi
         const radius = 12; // Radius of the arc
         const angleStep = Math.PI / 6; // Spread angle
         const angle = (i - (total - 1) / 2) * (angleStep / (total / 4));
-        
+
         const x = Math.sin(angle) * radius;
         const z = Math.cos(angle) * radius - radius; // Offset so center is at 0
         const y = 0.8;
@@ -164,7 +164,7 @@ const Gallery = () => {
             const yPos = (Math.random() - 0.5) * 50; // Wide vertical distribution
             const speed = 0.6 + Math.random() * 1.5; // Slower, more majestic drift
             const xOffset = (Math.random() - 0.5) * 200; // Spread across a wider width
-            
+
             return (
               <MovingCloud
                 key={i}
@@ -182,13 +182,13 @@ const Gallery = () => {
         {isNight && <Stars radius={200} depth={100} count={5000} factor={10} saturation={10} fade={true} speed={1} />}
 
         <ambientLight intensity={isNight ? 0.3 : 1.5} />
-        <pointLight 
+        <pointLight
           ref={mouseLightRef}
-          position={[0, 4, 3]} 
-          intensity={80} 
-          decay={2} 
-          distance={25} 
-          color={isNight ? "#60a5fa" : "#ffffff"} 
+          position={[0, 4, 3]}
+          intensity={80}
+          decay={2}
+          distance={25}
+          color={isNight ? "#60a5fa" : "#ffffff"}
         />
 
         <GalleryCarousel onSelect={setSelectedCert} activeId={selectedCert ? certificates.indexOf(selectedCert) : null} />
