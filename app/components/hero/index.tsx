@@ -35,13 +35,13 @@ const Hero = () => {
 
   return (
     <>
-      <Text position={[0, 2, -10]} {...fontProps} ref={titleRef}>Hi, I am Mohit Virli.</Text>
+      <Text position={[0, 2, -10]} {...fontProps} ref={titleRef}>Hi, I am Shaurya Singh.</Text>
       <StarsContainer />
-      <CloudContainer/>
+      <CloudContainer />
       <group position={[0, -25, 5.69]}>
-        <pointLight castShadow position={[1, 1, -2.5]} intensity={60} distance={10}/>
-        <WindowModel receiveShadow/>
-        <TextWindow/>
+        <pointLight castShadow position={[1, 1, -2.5]} intensity={60} distance={10} />
+        <WindowModel receiveShadow />
+        <TextWindow />
       </group>
     </>
   );

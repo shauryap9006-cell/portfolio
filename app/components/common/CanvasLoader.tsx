@@ -14,6 +14,8 @@ import Preloader from "./Preloader";
 import ProgressLoader from "./ProgressLoader";
 import { ScrollHint } from "./ScrollHint";
 import ThemeSwitcher from "./ThemeSwitcher";
+import ThemeTransition from "./ThemeTransition";
+import CertificateModal from "../experience/gallery/CertificateModal";
 // import {Perf} from "r3f-perf"
 
 const CanvasLoader = (props: { children: React.ReactNode }) => {
@@ -83,6 +85,8 @@ const CanvasLoader = (props: { children: React.ReactNode }) => {
               {props.children}
               <Preloader />
             </ScrollControls>
+            
+            <ThemeTransition />
 
             <Preload all />
           </Suspense>
@@ -93,6 +97,7 @@ const CanvasLoader = (props: { children: React.ReactNode }) => {
       <AwwardsBadge />
       <ThemeSwitcher />
       <ScrollHint />
+      <CertificateModal />
     </div>
   );
 };

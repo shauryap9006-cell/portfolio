@@ -7,6 +7,7 @@ import * as THREE from "three";
 
 import { usePortalStore } from "@stores";
 import { Project } from "@types";
+import ProjectAsset from "./ProjectAsset";
 
 interface ProjectTileProps {
   project: Project;
@@ -98,10 +99,11 @@ const ProjectTile = ({ project, index, position, rotation, activeId, onClick }: 
       onClick={onClick}
       onPointerOver={() => !isMobile && isProjectSectionActive && setHovered(true)}
       onPointerOut={() => !isMobile && isProjectSectionActive && setHovered(false)}>
+      <ProjectAsset index={index} hovered={hovered} />
       <group ref={projectRef}>
         <mesh>
           <planeGeometry args={[4.2, 2, 1]} />
-          <meshBasicMaterial color="#FFF" transparent opacity={0.3}/>
+          <meshBasicMaterial color="#FFF" transparent opacity={0.3} />
           {/* <meshPhysicalMaterial transmission={1} roughness={0.3} /> */}
           <Edges color="black" lineWidth={1.5} />
         </mesh>

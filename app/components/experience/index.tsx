@@ -1,14 +1,16 @@
 import { Text, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { usePortalStore } from "@stores";
+import { usePortalStore, useThemeStore } from "@stores";
 import { useRef } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from 'three';
 import GridTile from "./GridTile";
+import Gallery from "./gallery";
 import Projects from "./projects";
 import Work from "./work";
 
 const Experience = () => {
+  const { theme } = useThemeStore();
   const titleRef = useRef<THREE.Group>(null);
   const groupRef = useRef<THREE.Group>(null);
   const data = useScroll();
@@ -20,18 +22,25 @@ const Experience = () => {
     color: 'white',
   };
 
-  useFrame((sate, delta) => {
-    const d = data.range(0.8, 0.2);
-    const e = data.range(0.7, 0.2);
-
+  useFrame((state, delta) => {
     if (groupRef.current && !isActive) {
-      groupRef.current.position.y = d > 0 ? -1 : -30;
+      const d = data.range(0.8, 0.2);
+      groupRef.current.position.y = d > 0 ? -1.8 : -30; // Pushed back from -1 to -1.8
       groupRef.current.visible = d > 0;
+      
+      // Enhanced Parallax Sway
+      const targetX = -state.pointer.x * (isMobile ? 0.1 : 0.4); // Reversed
+      const targetZ = -state.pointer.y * (isMobile ? 0.05 : 0.2); // Reversed
+      groupRef.current.position.x = THREE.MathUtils.lerp(groupRef.current.position.x, targetX, 0.05);
+      groupRef.current.position.z = THREE.MathUtils.lerp(groupRef.current.position.z, targetZ, 0.05);
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, targetX * 0.1, 0.05); // Reversed
     }
 
     if (titleRef.current) {
+      const d = data.range(0.8, 0.2);
+      const e = data.range(0.7, 0.2);
       titleRef.current.children.forEach((text, i) => {
-        const y =  Math.max(Math.min((1 - d) * (10 - i), 10), 0.5);
+        const y = Math.max(Math.min((1 - d) * (10 - i), 10), 0.5);
         text.position.y = THREE.MathUtils.damp(text.position.y, y, 7, delta);
         /* eslint-disable  @typescript-eslint/no-explicit-any */
         (text as any).fillOpacity = e;
@@ -50,7 +59,7 @@ const Experience = () => {
   };
 
   return (
-    <group position={[0, -41.5, 12]} rotation={[-Math.PI / 2, 0 ,-Math.PI / 2]}>
+    <group position={[0, -41.5, 12]} rotation={[-Math.PI / 2, 0, -Math.PI / 2]}>
       {/* <mesh receiveShadow position={[-5, 0, 0.1]}>
         <planeGeometry args={[10, 5, 1]} />
         <shadowMaterial opacity={0.1} />
@@ -60,20 +69,27 @@ const Experience = () => {
           {getTitle()}
         </group>
 
-        <group position={[0, -1, 0]} ref={groupRef}>
+        <group position={[0, -1, 0]} ref={groupRef} scale={0.9}>
           <GridTile title='WORK AND EDUCATION'
             id="work"
             color='#b9c6d6'
             textAlign='left'
-            position={new THREE.Vector3(isMobile ? -1 : -2, 0, isMobile ? 0.4 : 0)}>
-            <Work/>
+            position={new THREE.Vector3(isMobile ? -2.2 : -4.05, 0, isMobile ? 0.4 : 0)}>
+            <Work />
           </GridTile>
           <GridTile title='SIDE PROJECTS'
             id="projects"
             color='#bdd1e3'
+            textAlign='center'
+            position={new THREE.Vector3(0, 0, 0)}>
+            <Projects />
+          </GridTile>
+          <GridTile title='ACHIEVEMENTS'
+            id="gallery"
+            color={theme?.type === 'dark' ? '#0690d4' : '#111111'}
             textAlign='right'
-            position={new THREE.Vector3(isMobile ? 1 : 2, 0, 0)}>
-            <Projects/>
+            position={new THREE.Vector3(isMobile ? 2.2 : 4.05, 0, isMobile ? 0.4 : 0)}>
+            <Gallery />
           </GridTile>
         </group>
       </group>

@@ -14,12 +14,12 @@ const vercettiFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Mohit Virli ✌️",
-  description: "A frontend developer by profession, a creative at heart.",
-  keywords: "Mohit Virli, Frontend Engineer, React Developer, Three.js, Creative Developer, Web Development, Angular, JavaScript, TypeScript, Portfolio",
-  authors: [{ name: "Mohit Virli" }],
-  creator: "Mohit Virli",
-  publisher: "Mohit Virli",
+  title: "Shaurya Singh ✌️",
+  description: "An AI-focused developer and creative coder building cool stuff.",
+  keywords: "Shaurya Singh, AI Developer, Full Stack Developer, React, Three.js, Creative Developer, Web Development, Python, TypeScript, Portfolio",
+  authors: [{ name: "Shaurya Singh" }],
+  creator: "Shaurya Singh",
+  publisher: "Shaurya Singh",
   formatDetection: {
     email: false,
     address: false,
@@ -36,21 +36,19 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Mohit Virli - Frontend Engineer",
-    description: "Frontend engineer by profession, creative at heart.",
-    url: "https://mohitvirli.github.io",
-    siteName: "Mohit Virli's Portfolio",
+    title: "Shaurya Singh - AI Developer",
+    description: "AI-focused developer and creative coder building cool stuff.",
+    url: "https://shauryap9006-cell.github.io",
+    siteName: "Shaurya Singh's Portfolio",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohit Virli - Frontend Engineer",
-    description: "Frontend engineer by profession, creative at heart.",
+    title: "Shaurya Singh - AI Developer",
+    description: "AI-focused developer and creative coder building cool stuff.",
   },
-  verification: {
-    google: "GsRYY-ivL0F_VKkfs5KAeToliqz0gCrRAJKKmFkAxBA",
-  },
+  verification: {},
 };
 
 export const viewport: Viewport = {
@@ -72,7 +70,7 @@ export default function RootLayout({
       >
         {children}
       </body>
-      <GoogleAnalytics gaId={'G-7WD4HM3XRE'}/>
+      <GoogleAnalytics gaId={'G-7WD4HM3XRE'} />
     </html>
   );
 }

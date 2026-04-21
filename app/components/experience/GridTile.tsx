@@ -41,18 +41,31 @@ const GridTile = (props: GridTileProps) => {
         letterSpacing: 0.4,
       });
       gsap.to(titleRef.current.position, {
-        x: isWork ? 1: -1,
+        x: isWork ? 1 : -1,
         y: isWork ? -1.7 : 1.5,
         duration: 0.5,
       });
     }
   }, []);
 
-  useFrame(() => {
+  useFrame((state) => {
     const d = data.range(0.95, 0.05);
     if (isMobile && titleRef.current) {
       /* eslint-disable  @typescript-eslint/no-explicit-any */
       (titleRef.current as any).fillOpacity = d;
+    }
+
+    // Dynamic Tilt Parallax (Desktop Only)
+    if (!isMobile && gridRef.current && !isActive) {
+      // Check if mouse is hovering (subtle check or just always active based on distance)
+      // Actually, we can use state.pointer directly to tilt the card slightly
+      const tiltX = -state.pointer.y * 0.1; // Reversed
+      const tiltY = state.pointer.x * 0.1; // Reversed
+
+      // We only want to tilt if the tile is "near" the mouse or we can just apply a global subtle sway
+      // But let's only do it when it's being interacted with or moderately active
+      gridRef.current.rotation.x = THREE.MathUtils.lerp(gridRef.current.rotation.x, tiltX, 0.1);
+      gridRef.current.rotation.y = THREE.MathUtils.lerp(gridRef.current.rotation.y, tiltY, 0.1);
     }
   });
 
@@ -79,7 +92,7 @@ const GridTile = (props: GridTileProps) => {
       gsap.fromTo(div, {
         scale: 0,
         rotate: '-180deg',
-      },{
+      }, {
         opacity: 1,
         zIndex: 10,
         transform: 'rotateX(0deg)',
@@ -145,7 +158,7 @@ const GridTile = (props: GridTileProps) => {
       fillOpacity: 1
     });
     if (gridRef.current && hoverBoxRef.current) {
-      gsap.to(gridRef.current.position, { z: 0.5, duration: 0.4});
+      gsap.to(gridRef.current.position, { z: 0.3, duration: 0.4 });
       gsap.to(hoverBoxRef.current.scale, { x: 1, y: 1, z: 1, duration: 0.4 });
     }
   };
@@ -157,8 +170,9 @@ const GridTile = (props: GridTileProps) => {
       fillOpacity: 0
     });
     if (gridRef.current && hoverBoxRef.current) {
-      gsap.to(gridRef.current.position, { z: 0, duration: 0.4});
+      gsap.to(gridRef.current.position, { z: 0, duration: 0.4 });
       gsap.to(hoverBoxRef.current.scale, { x: 0, y: 0, z: 0, duration: 0.4 });
+      gsap.to(gridRef.current.rotation, { x: 0, y: 0, duration: 0.4 });
     }
   };
 
@@ -181,16 +195,16 @@ const GridTile = (props: GridTileProps) => {
       onClick={portalInto}
       onPointerOver={onPointerOver}
       onPointerOut={onPointerOut}>
-      { getGeometry() }
+      {getGeometry()}
       <group>
         <mesh position={[0, 0, -0.01]} ref={hoverBoxRef} scale={[0, 0, 0]}>
-          <boxGeometry args={[4, 4, 0.5]}/>
+          <boxGeometry args={[4, 4, 0.5]} />
           <meshPhysicalMaterial
             color="#444"
             transparent={true}
             opacity={0.3}
           />
-          <Edges color="white" lineWidth={3}/>
+          <Edges color="white" lineWidth={3} />
         </mesh>
         <Text position={[0, -1.8, 0.4]} {...fontProps} ref={titleRef}>
           {title}
