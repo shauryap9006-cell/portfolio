@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from "three";
+import { withBase } from "@constants/pathConfig";
 import { FOOTER_LINKS } from "../../constants";
 import { FooterLink } from "../../types";
 
@@ -24,7 +25,7 @@ const FooterLinkItem = ({ link }: { link: FooterLink }) => {
   };
 
   const fontProps = {
-    font: "./Vercetti-Regular.woff",
+    font: withBase("Vercetti-Regular.woff"),
     fontSize: 0.2,
     color: 'white',
     onPointerOver,

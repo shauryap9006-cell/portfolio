@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useEffect, useRef } from 'react';
 import { isMobile } from 'react-device-detect';
 import * as THREE from 'three';
+import { withBase } from "@constants/pathConfig";
 import { TriangleGeometry } from './Triangle';
 
 interface GridTileProps {
@@ -140,7 +141,7 @@ const GridTile = (props: GridTileProps) => {
   }
 
   const fontProps: Partial<TextProps> = {
-    font: "./soria-font.ttf",
+    font: withBase("soria-font.ttf"),
     maxWidth: 2,
     anchorX: 'center',
     anchorY: 'bottom',

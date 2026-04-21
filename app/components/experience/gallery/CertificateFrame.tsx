@@ -122,7 +122,7 @@ const CertificateFrame = ({
         {/* Text Info (Small, floating below) */}
         <group position={[0, -1.5, 0.1]}>
           <Text
-            font="./soria-font.ttf"
+            font={withBase("soria-font.ttf")}
             fontSize={0.25}
             color="white"
             anchorX="center"
@@ -131,7 +131,7 @@ const CertificateFrame = ({
             {title.toUpperCase()}
           </Text>
           <Text
-            font="./soria-font.ttf"
+            font={withBase("soria-font.ttf")}
             fontSize={0.15}
             color="#aaa"
             position={[0, -0.25, 0]}
@@ -143,7 +143,7 @@ const CertificateFrame = ({
 
           {description && (
             <Text
-              font="./Vercetti-Regular.woff"
+              font={withBase("Vercetti-Regular.woff")}
               fontSize={0.12}
               color="#ccc"
               position={[0, -0.6, 0]}

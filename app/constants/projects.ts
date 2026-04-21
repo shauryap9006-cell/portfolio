@@ -44,6 +44,12 @@ export const PROJECTS: Project[] = [
     subtext: 'Developed a minimalist clock featuring a time-remaining indicator.',
     url: 'https://github.com/shauryap9006-cell',
   },
+  {
+    title: 'Aura Portfolio',
+    date: 'Apr 2026',
+    subtext: 'A premium 3D portfolio featuring immersive Three.js environments, smooth transitions, and a glassmorphism UI design.',
+    url: 'https://github.com/shauryap9006-cell/portfolio',
+  },
 ];
 
 // modifed by shaurya

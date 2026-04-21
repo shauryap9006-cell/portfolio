@@ -4,6 +4,7 @@ import { usePortalStore, useThemeStore } from "@stores";
 import { useRef } from "react";
 import { isMobile } from "react-device-detect";
 import * as THREE from 'three';
+import { withBase } from "@constants/pathConfig";
 import GridTile from "./GridTile";
 import Gallery from "./gallery";
 import Projects from "./projects";
@@ -17,7 +18,7 @@ const Experience = () => {
   const isActive = usePortalStore((state) => !!state.activePortalId);
 
   const fontProps = {
-    font: "./soria-font.ttf",
+    font: withBase("soria-font.ttf"),
     fontSize: 0.4,
     color: 'white',
   };
