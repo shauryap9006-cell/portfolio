@@ -39,7 +39,7 @@ const ThemeTransition = () => {
 
         // Huge Solid Expansion for total height coverage
         innerGroup.children.forEach((child, i) => {
-          if ((child as any).scale) {
+          if (child.scale) {
             tl.fromTo(child.scale,
               { x: 0, y: 0, z: 0 },
               { x: 12, y: 12, z: 12, duration: 0.4, ease: "back.out" },
